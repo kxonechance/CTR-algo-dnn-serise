@@ -1,0 +1,6 @@
+CTR-algo-dnn-serise
+- pnn
+- AutoInt
+- onn
+- fibinet
+- fnn
