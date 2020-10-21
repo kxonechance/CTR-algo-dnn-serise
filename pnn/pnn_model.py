@@ -5,7 +5,7 @@
 @author: kx
 @file: pnn_model.py
 @function:
-@modify:
+@modify:  reference: https://www.cnblogs.com/gogoSandy/p/12742417.html
 """
 
 from __future__ import absolute_import
