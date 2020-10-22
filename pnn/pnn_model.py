@@ -82,9 +82,14 @@ def model_fn(features, labels, mode, params):
         if model_type == 'PNN':
             fc = tf.concat([lz_part, inner_product, outer_product], axis=1)
         for i in range(len(deep_layers)):
-            dense = tf.layers.dense(fc, deep_layers[i], activation=tf.nn.relu)
-            dense = tf.layers.batch_normalization(dense, training=mode == tf.estimator.ModeKeys.TRAIN)
-            dense = tf.layers.dropout(dense, rate=0.3, training=mode == tf.estimator.ModeKeys.TRAIN)
+            if i == 0:
+                dense = tf.layers.dense(fc, deep_layers[i], activation=tf.nn.relu)
+                dense = tf.layers.batch_normalization(dense, training=mode == tf.estimator.ModeKeys.TRAIN)
+                dense = tf.layers.dropout(dense, rate=0.3, training=mode == tf.estimator.ModeKeys.TRAIN)
+            else:
+                dense = tf.layers.dense(dense, deep_layers[i], activation=tf.nn.relu)
+                dense = tf.layers.batch_normalization(dense, training=mode == tf.estimator.ModeKeys.TRAIN)
+                dense = tf.layers.dropout(dense, rate=0.3, training=mode == tf.estimator.ModeKeys.TRAIN)
 
     # batch * 1
     with tf.variable_scope('output'):
