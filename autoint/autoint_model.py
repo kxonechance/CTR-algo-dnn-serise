@@ -111,7 +111,7 @@ def model_fn(features, labels, mode, params):
             x = auto_interacting(i, x, hidden_factors, num_att_heads)
         autoint_layer = tf.layers.flatten(x)
 
-    autoint_layer = tf.layers.flatten(embeddings)
+    autoint_layer = tf.layers.flatten(autoint_layer)
 
     # batch * 1
     with tf.variable_scope('output'):
